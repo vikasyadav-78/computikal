@@ -236,12 +236,14 @@ export default function Contact() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {/* Name */}
                     <div>
-                      <label className="block text-xs sm:text-sm font-bold text-slate-800 uppercase tracking-wider mb-1.5">
+                      <label htmlFor="contact-name" className="block text-xs sm:text-sm font-bold text-slate-800 uppercase tracking-wider mb-1.5">
                         Your Name <span className="text-brand-red">*</span>
                       </label>
                       <input
+                        id="contact-name"
                         type="text"
                         name="name"
+                        aria-label="Your Name"
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="John Doe"
@@ -259,12 +261,14 @@ export default function Contact() {
 
                     {/* Email */}
                     <div>
-                      <label className="block text-xs sm:text-sm font-bold text-slate-800 uppercase tracking-wider mb-1.5">
+                      <label htmlFor="contact-email" className="block text-xs sm:text-sm font-bold text-slate-800 uppercase tracking-wider mb-1.5">
                         Email Address <span className="text-brand-red">*</span>
                       </label>
                       <input
+                        id="contact-email"
                         type="email"
                         name="email"
+                        aria-label="Email Address"
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="john@example.com"
@@ -284,12 +288,14 @@ export default function Contact() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {/* Phone */}
                     <div>
-                      <label className="block text-xs sm:text-sm font-bold text-slate-800 uppercase tracking-wider mb-1.5">
+                      <label htmlFor="contact-phone" className="block text-xs sm:text-sm font-bold text-slate-800 uppercase tracking-wider mb-1.5">
                         Phone Number <span className="text-brand-red">*</span>
                       </label>
                       <input
+                        id="contact-phone"
                         type="tel"
                         name="phone"
+                        aria-label="Phone Number"
                         value={formData.phone}
                         onChange={handleChange}
                         maxLength={10}
@@ -309,11 +315,13 @@ export default function Contact() {
 
                     {/* Service Dropdown */}
                     <div>
-                      <label className="block text-xs sm:text-sm font-bold text-slate-800 uppercase tracking-wider mb-1.5">
+                      <label htmlFor="contact-service" className="block text-xs sm:text-sm font-bold text-slate-800 uppercase tracking-wider mb-1.5">
                         Service Needed <span className="text-brand-red">*</span>
                       </label>
                       <select
+                        id="contact-service"
                         name="service"
+                        aria-label="Service Needed"
                         value={formData.service}
                         onChange={handleChange}
                         className="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-900 focus:border-brand-blue focus:outline-none focus:bg-white text-xs sm:text-sm transition-all"
@@ -329,11 +337,13 @@ export default function Contact() {
 
                   {/* Project Details */}
                   <div>
-                    <label className="block text-xs sm:text-sm font-bold text-slate-800 uppercase tracking-wider mb-1.5">
+                    <label htmlFor="contact-details" className="block text-xs sm:text-sm font-bold text-slate-800 uppercase tracking-wider mb-1.5">
                       Project Details <span className="text-brand-red">*</span>
                     </label>
                     <textarea
+                      id="contact-details"
                       name="details"
+                      aria-label="Project Details"
                       rows={4}
                       value={formData.details}
                       onChange={handleChange}

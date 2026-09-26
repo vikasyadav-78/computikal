@@ -11,6 +11,9 @@ export default function Logo({ className = '', height = 36, showText = true }) {
         <img
           src="/logo/logo.png"
           alt="Computikal Logo"
+          width={180}
+          height={150}
+          decoding="async"
           style={{ height: `${height}px`, width: 'auto' }}
           className="object-contain transition-transform duration-200 group-hover:scale-105"
           onError={() => setImgError(true)}
