@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Send, CheckCircle2, AlertCircle, Mail, Clock, ShieldCheck, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -44,7 +45,11 @@ export default function Contact() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    let updatedValue = value;
+    if (name === 'phone') {
+      updatedValue = value.replace(/\D/g, '').slice(0, 10);
+    }
+    setFormData((prev) => ({ ...prev, [name]: updatedValue }));
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: null }));
     }
@@ -62,8 +67,13 @@ export default function Contact() {
       newErrors.email = 'Please enter a valid email address';
     }
 
-    if (formData.phone.trim() && !/^[0-[#+()-\s\d]{6,20}$/.test(formData.phone.trim())) {
-      newErrors.phone = 'Please enter a valid phone number';
+    const trimmedPhone = formData.phone.trim();
+    if (!trimmedPhone) {
+      newErrors.phone = 'Phone number is required';
+    } else if (!/^[6-9]/.test(trimmedPhone)) {
+      newErrors.phone = 'Phone number must start with 6, 7, 8, or 9';
+    } else if (trimmedPhone.length !== 10) {
+      newErrors.phone = 'Phone number must be exactly 10 digits';
     }
 
     if (!formData.details.trim()) {
@@ -85,6 +95,16 @@ export default function Contact() {
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
+      toast.success('Your inquiry has been submitted successfully!', {
+        duration: 4000,
+        style: {
+          background: '#0f172a',
+          color: '#fff',
+          fontWeight: '600',
+          borderRadius: '12px',
+          padding: '12px 20px',
+        },
+      });
     }, 600);
   };
 
@@ -102,6 +122,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="relative py-14 md:py-16 bg-slate-50 border-b border-slate-200/80 overflow-hidden">
+      <Toaster position="top-right" reverseOrder={false} />
       <div className="section-container relative z-10">
         
         {/* Section Header */}
@@ -264,14 +285,16 @@ export default function Contact() {
                     {/* Phone */}
                     <div>
                       <label className="block text-xs sm:text-sm font-bold text-slate-800 uppercase tracking-wider mb-1.5">
-                        Phone Number
+                        Phone Number <span className="text-brand-red">*</span>
                       </label>
                       <input
                         type="tel"
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="+1 (555) 000-0000"
+                        maxLength={10}
+                        inputMode="numeric"
+                        placeholder="9876543210"
                         className={`w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border ${
                           errors.phone ? 'border-brand-red' : 'border-slate-200 focus:border-brand-blue'
                         } text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white text-xs sm:text-sm transition-all`}
