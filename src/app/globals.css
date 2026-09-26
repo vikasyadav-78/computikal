@@ -1,0 +1,99 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  body {
+    background-color: #FFFFFF;
+    color: #0F172A;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0070C0;
+}
+
+/* Gradient Text Utilities using exact Logo colors */
+.gradient-text-blue {
+  color: #0070C0;
+}
+
+/* Micro-animations & Interactive Card Hover effects */
+.card-animated {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-animated:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px -6px rgba(0, 112, 192, 0.12);
+}
+
+.btn-animated {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-animated:hover {
+  transform: translateY(-1px);
+}
+
+.btn-animated:active {
+  transform: scale(0.97);
+}
+
+/* Background Grid Pattern on White */
+.bg-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+}
+
+/* Keyframe Floating & Pulse animations */
+@keyframes softFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-soft-float {
+  animation: softFloat 4s ease-in-out infinite;
+}
+
+/* Responsive Container */
+.section-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .section-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
