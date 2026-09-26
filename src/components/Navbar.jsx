@@ -105,17 +105,25 @@ export default function Navbar() {
         {/* Mobile Hamburger Menu Toggle */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2.5 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 hover:text-slate-900 focus:outline-none"
+          className="md:hidden p-2.5 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 hover:text-slate-900 focus:outline-none z-50"
           aria-label="Toggle Navigation Menu"
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
+      {/* Mobile Drawer Backdrop Overlay */}
+      {mobileMenuOpen && (
+        <div
+          onClick={() => setMobileMenuOpen(false)}
+          className="fixed inset-0 bg-slate-900/50 z-40 md:hidden transition-opacity"
+        />
+      )}
+
       {/* Mobile Drawer Menu */}
       <div
-        className={`md:hidden absolute inset-x-0 top-full bg-white/98 backdrop-blur-xl border-b border-slate-200 shadow-xl transition-all duration-200 ease-in-out origin-top overflow-hidden ${
-          mobileMenuOpen ? 'max-h-[400px] opacity-100 py-5' : 'max-h-0 opacity-0 py-0'
+        className={`md:hidden absolute inset-x-0 top-full bg-white z-50 border-b border-slate-200 shadow-2xl transition-all duration-250 ease-in-out origin-top overflow-hidden ${
+          mobileMenuOpen ? 'max-h-[420px] opacity-100 py-5' : 'max-h-0 opacity-0 py-0 border-none'
         }`}
       >
         <div className="section-container flex flex-col gap-2.5">
